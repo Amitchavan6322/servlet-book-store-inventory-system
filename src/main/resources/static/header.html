@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Store Inventory System</title>
+  <style>
+    /* General Styles */
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(to right, #2e2e2e, #4a4a4a);
+        text-align: center;
+        margin: 0;
+        color: white;
+    }
+
+    /* Header Styling */
+    .header {
+        background: rgba(0, 0, 0, 0.7);
+        padding: 15px 0;
+        position: sticky;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .header h1 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    /* Navigation Buttons */
+    .nav-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .nav-buttons button {
+        padding: 12px 18px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+        border-radius: 8px;
+        background: #007bff;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .nav-buttons button:hover {
+        background: #0056b3;
+        transform: scale(1.1);
+    }
+
+    /* Iframe Styling */
+    .iframe-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    iframe {
+        width: 90%;
+        height: 600px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        background: white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+        .nav-buttons {
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nav-buttons button {
+            width: 80%;
+            margin: auto;
+        }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📚 Book Store Inventory System</h1>
+  <div class="nav-buttons">
+    <button onclick="loadPage('book-insert.html')">📖 Book Form</button>
+    <button onclick="loadPage('customer-insert.html')">👤 Customer Form</button>
+    <button onclick="loadPage('supplier-insert.html')">🚚 Supplier Form</button>
+  </div>
+</div>
+
+<div class="iframe-container">
+  <iframe id="contentFrame" src="book-insert.html"></iframe>
+</div>
+
+<script>
+  function loadPage(page) {
+      document.getElementById("contentFrame").src = page;
+  }
+</script>
+
+</body>
+</html>

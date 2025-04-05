@@ -1,1 +1,1 @@
-# servlet-book-store-inventory-system
+# hello-world-servlet-example

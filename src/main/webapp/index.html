@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store Inventory</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            width: 50%;
+            margin: 0 auto;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"], input[type="reset"] {
+            width: 48%;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        input[type="reset"] {
+            background-color: #dc3545;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="reset"]:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Book Store Inventory System</h1>
+<form action="/book-store-inventory-system/book-controller" method="GET">
+    <label for="bookid">Book ID:</label>
+    <input type="number" id="bookid" name="bookid" required>
+
+    <label for="bookname">Book Name:</label>
+    <input type="text" id="bookname" name="bookname" required>
+
+    <label for="bookauthor">Author:</label>
+    <input type="text" id="bookauthor" name="bookauthor" required>
+
+    <label for="bookpublisher">Publisher:</label>
+    <input type="text" id="bookpublisher" name="bookpublisher" required>
+
+    <label for="bookcopies">No. of Copies:</label>
+    <input type="number" id="bookcopies" name="bookcopies" min="1" required>
+
+    <label for="bookcategory">Category:</label>
+    <select id="bookcategory" name="bookcategory" required>
+        <option value="" disabled selected>Select Category</option>
+        <option value="ACADEMIC">ACADEMIC</option>
+        <option value="FICTION">FICTION</option>
+        <option value="HISTORY">HISTORY</option>
+        <option value="MUSIC">MUSIC</option>
+    </select>
+
+    <label for="booklocation">Storage Location:</label>
+    <input type="text" id="booklocation" name="booklocation">
+
+    <label for="bookprice">Price:</label>
+    <input type="number" id="bookprice" name="bookprice" min="0.01" step="0.01" required>
+
+    <input type="submit" value="Submit">
+    <input type="reset" value="Reset">
+</form>
+
+</body>
+</html>
