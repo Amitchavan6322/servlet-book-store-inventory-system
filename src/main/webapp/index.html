@@ -3,101 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Store Inventory</title>
+    <title>Book Store Inventory System</title>
     <style>
+        /* General Styles */
         body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-        }
-
-        h1 {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #2e2e2e, #4a4a4a);
             text-align: center;
-        }
-
-        form {
-            width: 50%;
-            margin: 0 auto;
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        label {
-            font-weight: bold;
-            display: block;
-            margin-top: 10px;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        input[type="submit"], input[type="reset"] {
-            width: 48%;
-            background-color: #007BFF;
+            margin: 0;
             color: white;
-            border: none;
-            cursor: pointer;
+        }
+
+        /* Header Styling */
+        .header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
             margin-top: 15px;
-            padding: 10px;
+        }
+
+        .nav-buttons button {
+            padding: 12px 18px;
             font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background: #007bff;
+            color: white;
+            transition: all 0.3s ease;
         }
 
-        input[type="reset"] {
-            background-color: #dc3545;
+        .nav-buttons button:hover {
+            background: #0056b3;
+            transform: scale(1.1);
         }
 
-        input[type="submit"]:hover {
-            background-color: #0056b3;
+        /* Iframe Styling */
+        .iframe-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
         }
 
-        input[type="reset"]:hover {
-            background-color: #c82333;
+        iframe {
+            width: 90%;
+            height: 600px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .nav-buttons {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .nav-buttons button {
+                width: 80%;
+                margin: auto;
+            }
         }
     </style>
 </head>
 <body>
 
-<h1>Book Store Inventory System</h1>
-<form action="/book-store-inventory-system/book-controller" method="GET">
-    <label for="bookid">Book ID:</label>
-    <input type="number" id="bookid" name="bookid" required>
+<div class="header">
+    <h1>📚 Book Store Inventory System</h1>
+    <div class="nav-buttons">
+        <button onclick="loadPage('book-insert.html')">📖 Book Form</button>
+        <button onclick="loadPage('customer-insert.html')">👤 Customer Form</button>
+        <button onclick="loadPage('supplier-insert.html')">🚚 Supplier Form</button>
+    </div>
+</div>
 
-    <label for="bookname">Book Name:</label>
-    <input type="text" id="bookname" name="bookname" required>
+<div class="iframe-container">
+    <iframe id="contentFrame" src="book-insert.html"></iframe>
+</div>
 
-    <label for="bookauthor">Author:</label>
-    <input type="text" id="bookauthor" name="bookauthor" required>
-
-    <label for="bookpublisher">Publisher:</label>
-    <input type="text" id="bookpublisher" name="bookpublisher" required>
-
-    <label for="bookcopies">No. of Copies:</label>
-    <input type="number" id="bookcopies" name="bookcopies" min="1" required>
-
-    <label for="bookcategory">Category:</label>
-    <select id="bookcategory" name="bookcategory" required>
-        <option value="" disabled selected>Select Category</option>
-        <option value="ACADEMIC">ACADEMIC</option>
-        <option value="FICTION">FICTION</option>
-        <option value="HISTORY">HISTORY</option>
-        <option value="MUSIC">MUSIC</option>
-    </select>
-
-    <label for="booklocation">Storage Location:</label>
-    <input type="text" id="booklocation" name="booklocation">
-
-    <label for="bookprice">Price:</label>
-    <input type="number" id="bookprice" name="bookprice" min="0.01" step="0.01" required>
-
-    <input type="submit" value="Submit">
-    <input type="reset" value="Reset">
-</form>
+<script>
+    function loadPage(page) {
+        document.getElementById("contentFrame").src = page;
+    }
+</script>
 
 </body>
 </html>

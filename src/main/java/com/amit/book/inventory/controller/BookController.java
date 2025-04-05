@@ -14,7 +14,7 @@ public class BookController extends HttpServlet {
     BookService bookService = new BookService();
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        System.out.println("@@@@@@@@ inside the doGet() method");
+        System.out.println("@@@@@@@@ inside the BookController doGet() method");
 
         int id = Integer.parseInt(request.getParameter("bookid"));
         String name = request.getParameter("bookname");
@@ -35,7 +35,7 @@ public class BookController extends HttpServlet {
     }
 
     public void service(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        System.out.println("@@@@@@@@ inside the service() method");
+        System.out.println("@@@@@@@@ inside the BookController service() method");
         this.doGet(request, response);
     }
 }
