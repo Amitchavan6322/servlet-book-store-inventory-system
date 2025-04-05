@@ -7,10 +7,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<button onclick="window.location.href='index.html'" class="home-button">
+    🏠 Go Back to Main Page
+</button>
+
 <h1>📖 Book Creation Form</h1>
+
 <form action="/book-store-inventory-system/book-controller" method="GET">
     <fieldset>
         <legend>Enter Book Details</legend>
+
         <label for="bookid">ID:</label>
         <input type="number" id="bookid" name="bookid" required>
 
@@ -45,5 +52,6 @@
         <input type="reset" value="Reset">
     </fieldset>
 </form>
+
 </body>
 </html>
