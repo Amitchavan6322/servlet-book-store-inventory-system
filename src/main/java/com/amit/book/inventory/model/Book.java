@@ -25,4 +25,8 @@ public class Book {
         this.storeLocation = location;
         this.price = (int) price;
     }
+
+    public Book() {
+
+    }
 }

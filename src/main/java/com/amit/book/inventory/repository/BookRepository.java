@@ -20,9 +20,10 @@ public class BookRepository {
     }
 
     public boolean fillTheBookInfo(Book book) throws SQLException {
-        this.initConnection();
+        //this.initConnection();
         String query = "INSERT INTO book VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        try (Connection connection = new ConnectionService().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, book.getBookId());
             preparedStatement.setString(2, book.getName());
             preparedStatement.setString(3, book.getAuthor());
@@ -162,7 +163,7 @@ public class BookRepository {
     }
 
     public boolean updateBookInfo(Book book) throws SQLException {
-
+        this.initConnection();
         String query = "UPDATE book SET book_name = ?, author = ?, publisher = ?, no_of_copies = ?, category = ?, store_location = ?, price = ? WHERE book_id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, book.getName());
