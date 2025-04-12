@@ -1,8 +1,8 @@
-# maven-book-store-inventory-system
-maven-book-store-inventory-system
+# servlet-book-store-inventory-system
+servlet-book-store-inventory-system
 
 # Project Overview  
-The maven book store inventory system project is a basic Java application that demonstrates a book inventory system. It utilizes object-oriented programming principles and simulates the interactions between customers, books and suppliers. Also it uses java 8 features.
+The servlet book store inventory system project is a basic Java application that demonstrates a book inventory system. It utilizes object-oriented programming principles and simulates the interactions between customers, books and suppliers. Also it uses java 8 features.
 
 # Features   
 * Manage customer information.
