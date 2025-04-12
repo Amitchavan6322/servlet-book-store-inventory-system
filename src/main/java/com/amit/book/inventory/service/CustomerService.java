@@ -1,18 +1,13 @@
 package com.amit.book.inventory.service;
 
-import com.amit.book.inventory.exception.InvalidBookIDException;
-import com.amit.book.inventory.exception.InvalidBookNameException;
-import com.amit.book.inventory.exception.InvalidBookPriceException;
-import com.amit.book.inventory.model.Book;
 import com.amit.book.inventory.model.Customer;
 import com.amit.book.inventory.repository.CustomerRepository;
 
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Scanner;
 
 public class CustomerService implements CustomerServiceInterface {
 
+    private static final CustomerRepository customerRepository = new CustomerRepository();
     public String getCustomerDetails(Customer customer) {
         return "<h2>Customer Details Submitted:</h2>" +
                 "<ul>" +
@@ -25,8 +20,14 @@ public class CustomerService implements CustomerServiceInterface {
     }
 
     @Override
-    public void acceptCustomerInfo() throws SQLException {
-
+    public boolean acceptCustomerInfo(Customer customer) throws SQLException {
+        if (customerRepository.fillCustomerInfo(customer)) {
+            System.out.println("customer inserted successfully!");
+        } else {
+            System.out.println("Failed to insert customer.");
+            return false;
+        }
+        return true;
     }
 
     @Override

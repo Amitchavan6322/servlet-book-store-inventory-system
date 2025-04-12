@@ -1,8 +1,12 @@
 package com.amit.book.inventory.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Customer {
 
     private int customerID;
@@ -11,11 +15,12 @@ public class Customer {
     private Long customerContact;
     private String customerEmailID;
 
-    public Customer(int id, String name, String address, Long contact, String emailID) {
+/*    public Customer(int id, String name, String address, Long contact, String emailID) {
         this.customerID = id;
         this.customerName = name;
         this.customerAddress = address;
         this.customerContact = contact;
         this.customerEmailID = emailID;
-    }
+    }*/
+
 }

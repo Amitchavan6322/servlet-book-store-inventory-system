@@ -1,8 +1,12 @@
 package com.amit.book.inventory.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Book {
     private int bookId;
     private String name;
@@ -26,7 +30,4 @@ public class Book {
         this.price = (int) price;
     }
 
-    public Book() {
-
-    }
 }

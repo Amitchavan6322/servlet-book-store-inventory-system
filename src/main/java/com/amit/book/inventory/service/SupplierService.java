@@ -20,32 +20,26 @@ public class SupplierService implements SupplierServiceInterface {
 
     private static final SupplierRepository supplierRepository = new SupplierRepository();
 
-    public void acceptingSupplierInfo() throws SQLException {
+    public String getSupplierDetails(Supplier supplier) {
+        return "<h2>Supplier Details Submitted:</h2>" +
+                "<ul>" +
+                "<li>ID: " + supplier.getSupplierID() + "</li>" +
+                "<li>Name: " + supplier.getSupplierName() + "</li>" +
+                "<li>Address: " + supplier.getSupplierAddress() + "</li>" +
+                "<li>Contact: " + supplier.getSupplierContact()+ "</li>" +
+                "<li>EmailID: " + supplier.getSupplierEmailId() + "</li>" +
+                "</ul>";
+    }
 
-        Supplier supplier = new Supplier();
-
-        System.out.println("Enter supplier id");
-        int supplierId = Integer.parseInt(scanner.nextLine());
-        supplier.setSupplierID(supplierId);
-
-        System.out.println("Enter supplier name");
-        String name = scanner.nextLine();
-        supplier.setSupplierName(name);
-
-        System.out.println("Enter supplier address");
-        String address = scanner.nextLine();
-        supplier.setSupplierAddress(address);
-
-        System.out.println("Enter supplier contact number");
-        Long contact = Long.valueOf(scanner.nextLine());
-        supplier.setSupplierContact(contact);
-
-        System.out.println("Enter supplier Email ID");
-        String emailID = scanner.nextLine();
-        supplier.setSupplierEmailId(emailID);
-
-        boolean isSupplierAdded = supplierRepository.fillSupplierInfo(supplier);
-        System.out.println(isSupplierAdded ? "Supplier entry added in DB" : "Failed to add customer entry in DB");
+    @Override
+    public boolean acceptSupplierInfo(Supplier supplier) throws SQLException {
+        if (supplierRepository.fillSupplierInfo(supplier)) {
+            System.out.println("supplier inserted successfully!");
+        } else {
+            System.out.println("Failed to insert supplier.");
+            return false;
+        }
+        return true;
     }
 
     public void displaySupplierInfo() throws SQLException {

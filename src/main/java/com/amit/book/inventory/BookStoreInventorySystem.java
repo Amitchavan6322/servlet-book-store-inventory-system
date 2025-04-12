@@ -37,7 +37,7 @@ public class BookStoreInventorySystem {
                     //customerController.run();
                     break;
                 case 3:
-                    supplierController.run();
+                    //supplierController.run();
                     break;
             }
         }

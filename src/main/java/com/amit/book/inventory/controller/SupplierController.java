@@ -1,72 +1,73 @@
 package com.amit.book.inventory.controller;
 
-import com.amit.book.inventory.exception.InvalidBookIDException;
-import com.amit.book.inventory.exception.InvalidBookNameException;
-import com.amit.book.inventory.exception.InvalidBookPriceException;
+import com.amit.book.inventory.model.Supplier;
 import com.amit.book.inventory.service.SupplierService;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.Scanner;
 
-public class SupplierController {
+public class SupplierController extends HttpServlet {
 
-    private static final Scanner scanner = new Scanner(System.in);
+    SupplierService supplierService = new SupplierService();
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        System.out.println("@@@@@@@@ inside the SupplierController doGet() method");
+        int id = Integer.parseInt(request.getParameter("supplierid"));
+        String name = request.getParameter("suppliername");
+        String address = request.getParameter("supplieraddress");
+        Long contact = Long.valueOf(request.getParameter("suppliercontact"));
+        String emailID = request.getParameter("supplieremailid");
 
-    public void run() throws SQLException {
-        int option = 0;
-        SupplierService supplierService = new SupplierService();
-        do {
-            System.out.println("Please select option from below list :");
-            System.out.println("1. Fill supplier information");
-            System.out.println("2. Display supplier information");
-            System.out.println("3. Get supplier by id");
-            System.out.println("4. Update the supplier information");
-            System.out.println("5. Delete the supplier information");
-            System.out.println("9: Go back to main menu");
-            option = Integer.parseInt(scanner.nextLine());
+        Supplier supplier = new Supplier(id, name, address, contact, emailID);
+        response.setContentType("text/html");
+        PrintWriter writer = response.getWriter();
+        writer.println("<html><body>");
+        writer.println(supplierService.getSupplierDetails(supplier));
+        writer.println("</body></html>");
+    }
 
+    public void doPost (HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("@@@@@@@@ inside the CustomerController doPost() method");
 
-            switch (option) {
-                case 1:
-                    supplierService.acceptingSupplierInfo();
-                    break;
+        int id = Integer.parseInt(request.getParameter("supplierid"));
+        String name = request.getParameter("suppliername");
+        String address = request.getParameter("supplieraddress");
+        Long contact = Long.valueOf(request.getParameter("suppliercontact"));
+        String emailID = request.getParameter("supplieremailid");
 
-                case 2:
-                    supplierService.displaySupplierInfo();
-                    break;
+        Supplier supplier = new Supplier();
+        supplier.setSupplierID(id);
+        supplier.setSupplierName(name);
+        supplier.setSupplierAddress(address);
+        supplier.setSupplierContact(contact);
+        supplier.setSupplierEmailId(emailID);
 
-                case 3:
-                    System.out.println("Enter supplier id");
-                    int supplierId = Integer.parseInt(scanner.nextLine());
-                    supplierService.getSupplierById(supplierId);
-                    break;
-
-                case 4:
-                    try {
-                        System.out.println("Enter the ID of the supplier you want to update:");
-                        int supplier_Id = Integer.parseInt(scanner.nextLine());
-                        boolean customerExists = supplierService.isSupplierExist(supplier_Id);
-                        if (customerExists) supplierService.updateSupplierInfo(supplier_Id);
-                    } catch (NumberFormatException | InvalidBookNameException | InvalidBookIDException |
-                             InvalidBookPriceException e) {
-                        System.out.println("Invalid input. Please enter a valid supplier ID.");
-                    }
-                    break;
-
-                case 5:
-                    try {
-                        System.out.println("Enter the ID of the supplier you want to delete:");
-                        int supplier_Id = Integer.parseInt(scanner.nextLine());
-                        boolean customerExists = supplierService.isSupplierExist(supplier_Id);
-                        if (customerExists) supplierService.deleteSupplierById(supplier_Id);
-                    } catch (NumberFormatException e) {
-                        System.out.println("Invalid input. Please enter a valid supplier ID.");
-                    }
-                    break;
+        try {
+            boolean isInserted = supplierService.acceptSupplierInfo(supplier);
+            response.setContentType("text/html");
+            PrintWriter out = response.getWriter();
+            out.println("<html><body>");
+            if (isInserted) {
+                out.println("<h1> supplier object inserted to db</h1>");
+            } else {
+                out.println("<h1> supplier object is NOT inserted to db</h1>");
             }
-
+            out.println("</body></html>");
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
         }
-        while (option != 9);
-        //System.out.println("Welcome back to main menu!");
+    }
+
+    public void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        System.out.println("@@@@@@@@ inside the SupplierController service() method");
+        if (request.getMethod().equals("POST")) {
+            this.doPost(request, response);
+        } else {
+            this.doGet(request, response);
+        }
     }
 }

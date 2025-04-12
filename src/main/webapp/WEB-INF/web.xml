@@ -1,26 +1,42 @@
 <!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
-  <servlet>
-    <servlet-name>bookController</servlet-name>
-    <servlet-class>com.amit.book.inventory.controller.BookController</servlet-class>
-  </servlet>
+    <display-name>Archetype Created Web Application</display-name>
 
-  <servlet>
-    <servlet-name>customerController</servlet-name>
-    <servlet-class>com.amit.book.inventory.controller.CustomerController</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>bookController</servlet-name>
+        <servlet-class>com.amit.book.inventory.controller.BookController</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>bookController</servlet-name>
-    <url-pattern>/book-controller</url-pattern>
-  </servlet-mapping>
+    <servlet>
+        <servlet-name>customerController</servlet-name>
+        <servlet-class>com.amit.book.inventory.controller.CustomerController</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>customerController</servlet-name>
-    <url-pattern>/customer-controller</url-pattern>
-  </servlet-mapping>
+    <servlet>
+        <servlet-name>supplierController</servlet-name>
+        <servlet-class>com.amit.book.inventory.controller.SupplierController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>bookController</servlet-name>
+        <url-pattern>/book-controller</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>customerController</servlet-name>
+        <url-pattern>/customer-controller</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>supplierController</servlet-name>
+        <url-pattern>/supplier-controller</url-pattern>
+    </servlet-mapping>
+
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
 </web-app>
